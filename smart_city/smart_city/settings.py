@@ -65,6 +65,7 @@ SIMPLE_JWT = {
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
 
+
 ROOT_URLCONF = 'smart_city.urls'
 
 TEMPLATES = [
