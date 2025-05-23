@@ -5,7 +5,8 @@ from .views import (SensoresListCreateAPIView,
                     AmbientesRetrieveUpdateDestroyAPIView,
                     HistoricoListCreateAPIView,
                     HistoricoRetriveUpdateDestroyAPIView,
-                    OperacaoExcel
+                    ImportarDadosExcel,
+                    ImportarDadosAmbiente
                     )
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
@@ -26,5 +27,8 @@ urlpatterns = [
     path('autenticacao/', TokenObtainPairView.as_view(), name="token_obtain_pair_view"),
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh_view'),
 
-    #path("OperaçãoExcel/", OperacaoExcel(caminho_excel=str,nome_arquivo_excel=str,nome_planilha=str,indice_coluna=int,))
+    #Importação
+    path("importando/Sensores",ImportarDadosExcel, name="Importar-sensores"),
+    path("importando/Ambiente", ImportarDadosAmbiente, name="Importar-ambiente")
+
 ]

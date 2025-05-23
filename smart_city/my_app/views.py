@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import (Sensores,
                      Ambientes,
                      Historico)
@@ -13,6 +13,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 import pandas as pd
+import openpyxl
 
 class PaginationConfig(PageNumberPagination):
     page_size = 3
@@ -139,28 +140,98 @@ class HistoricoRetriveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
         self.perform_destroy(instance)
         return Response({"Mensagem" : "Histórico deletado com sucesso"})
     
-class OperacaoExcel:
-    def __init__(self, caminho_excel:str,nome_arquivo_excel,nome_planilha:str,indice_coluna:int):
-        self.caminho_excel = caminho_excel
-        self.nome_planilha = nome_planilha
-        self.indice_coluna = indice_coluna
-        self.nome_arquivo_excel = nome_arquivo_excel
+def ImportarDadosExcel(request):
+    wb_contador = openpyxl.load_workbook("../Dados_Integrador/contador.xlsx")
+    wb_luminosidade = openpyxl.load_workbook("../Dados_Integrador/luminosidade.xlsx")
+    wb_temperatura = openpyxl.load_workbook("../Dados_Integrador/temperatura.xlsx")
+    wb_umidade = openpyxl.load_workbook("../Dados_Integrador/umidade.xlsx")
+
+    planilha_contador = wb_contador.active
+    planilha_luminosidade = wb_luminosidade.active
+    planilha_temperatura = wb_temperatura.active
+    planilha_umidade = wb_umidade.active
+    
+
+    
+    InfoSensores = []
+
+    Sensores.objects.all().delete()
+    
+
+    
+
+    planilhaSensores = [
+        planilha_contador,
+        planilha_luminosidade, 
+        planilha_temperatura,
+        planilha_umidade
+    ]
+
+    for planilha in planilhaSensores:
+        for row in planilha.iter_rows(min_row=2, values_only=True):
+            print(row)
+            if len(row) >= 5:
+                sensores = Sensores(
+                    sensor=row[0],
+                    mac_address=row[1],
+                    unidade_med=row[2],
+                    latitude=row[3],
+                    longitude=row[4],
+                    status=row[5],
+                )
+                InfoSensores.append(sensores)
+                
+            else:
+                return HttpResponse ("Colunas insulficiente")
+            
+    Sensores.objects.abulk_create(InfoSensores)
+
+    return HttpResponse ("IMPORTANDO DADOS", InfoSensores)
 
 
-    def lerExcel(self):
-        excel_df = pd.read_csv(self.caminho_excel,index_col=self.indice_coluna)
+def ImportarDadosAmbiente(request):
+        wb_ambiente = openpyxl.load_workbook("../Dados_Integrador/Ambientes.xlsx")
+        planilha_ambiente = wb_ambiente.active
 
-    def AbrindoExcel(self,sheet_name,df,df1,df2,df3,df4,df5):
-        df.to_excel(self.nome_arquivo_excel)
-        df.to_excel(self.caminho_excel,sheet_name)
-        with pd.ExcelWriter(self.caminho_excel) as writer:
-            df1.to_excel(writer, sheet_name="Ambiente")
-            df2.to_excel(writer, sheet_name="contador")
-            df3.to_excel(writer,sheet_name="luminosidade")
-            df4.to_excel(writer, sheet_name="temperatura")
-            df5.to_excel(writer, sheet_name="umidade")
+        InfoAmbiente = []
+        Ambientes.objects.all().delete()
+
+        for row in planilha_ambiente.iter_rows(min_row=2, values_only=True):
+            ambientes = Ambientes(
+                sig=row[0],
+                descricao=row[1],
+                ni=row[2],
+                responsavel=row[3]
+            ) 
+            InfoAmbiente.append(ambientes)
+        
+        Ambientes.objects.abulk_create(InfoAmbiente)
+        return HttpResponse ("IMPORTANDO DADOS", InfoAmbiente)
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+
+
 
         
+
+
+
+
+
+    
         
 
 

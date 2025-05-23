@@ -16,6 +16,7 @@ class Sensores(models.Model):
     longitude = models.FloatField()
     status = models.BooleanField()
 
+
     def __str__(self):
         return f"Sensor: {self.sensor}"
 
