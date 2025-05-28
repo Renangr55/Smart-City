@@ -169,8 +169,7 @@ def ImportarDadosExcel(request):
 
     for planilha in planilhaSensores:
         for row in planilha.iter_rows(min_row=2, values_only=True):
-            print(row)
-            if len(row) >= 5:
+            if len(row) >= 6:
                 sensores = Sensores(
                     sensor=row[0],
                     mac_address=row[1],
@@ -182,14 +181,13 @@ def ImportarDadosExcel(request):
                 InfoSensores.append(sensores)
                 
             else:
-                return HttpResponse ("Colunas insulficiente")
+                return HttpResponse ("Colunas insulficiente", InfoSensores)
             
-    Sensores.objects.abulk_create(InfoSensores)
+    Sensores.objects.bulk_create(InfoSensores)
+    return HttpResponse("IMPORTAÇÃO CONCLUÍDA COM SUCESSO.")
 
-    return HttpResponse ("IMPORTANDO DADOS", InfoSensores)
 
-
-def ImportarDadosAmbiente(request):
+def importarDadosAmbiente(request):
         wb_ambiente = openpyxl.load_workbook("../Dados_Integrador/Ambientes.xlsx")
         planilha_ambiente = wb_ambiente.active
 
@@ -205,9 +203,36 @@ def ImportarDadosAmbiente(request):
             ) 
             InfoAmbiente.append(ambientes)
         
-        Ambientes.objects.abulk_create(InfoAmbiente)
+        Ambientes.objects.bulk_create(InfoAmbiente)
         return HttpResponse ("IMPORTANDO DADOS", InfoAmbiente)
 
+def importarHistorico(request):
+    wb_historico = openpyxl.load_workbook("../Dados_Integrador/histórico.xlsx")
+    planilha_historico = wb_historico.active
+
+    infoHistorico = []
+    Historico.objects.all().delete()
+
+
+    for row in planilha_historico.iter_rows(min_row=2,values_only=True):
+        
+        try:
+            sensor = Sensores.objects.get(id=row[0])
+        except Sensores.DoesNotExist:
+            return HttpResponse(f"Sensor com ID {row[0]} não encontrado.")
+
+        historico = Historico(
+            tipo_sensor=sensor,
+            ambiente=row[1],
+            valor=row[2],
+            timestamp=row[3]
+        )
+
+        infoHistorico.append(historico)
+    
+    Historico.objects.bulk_create(infoHistorico)
+    
+    return HttpResponse("IMPORTANDO DADOS")
 
 
 

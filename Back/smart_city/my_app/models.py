@@ -2,6 +2,9 @@ from django.db import models
 
 
 # Create your models here.
+
+
+
 class Sensores(models.Model):
     SENSOR_CHOICES = [
         ('Temperatura (°C)','Temperatura (°C)'),
@@ -15,10 +18,6 @@ class Sensores(models.Model):
     latitude = models.FloatField(max_length=10, blank=False)
     longitude = models.FloatField()
     status = models.BooleanField()
-
-
-    def __str__(self):
-        return f"Sensor: {self.sensor}"
 
 class Ambientes(models.Model):
     sig = models.IntegerField(blank=False)

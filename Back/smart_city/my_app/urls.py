@@ -6,8 +6,10 @@ from .views import (SensoresListCreateAPIView,
                     HistoricoListCreateAPIView,
                     HistoricoRetriveUpdateDestroyAPIView,
                     ImportarDadosExcel,
-                    ImportarDadosAmbiente
+                    importarDadosAmbiente,
+                    importarHistorico
                     )
+
 from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 
 urlpatterns = [
@@ -29,6 +31,8 @@ urlpatterns = [
 
     #Importação
     path("importando/Sensores",ImportarDadosExcel, name="Importar-sensores"),
-    path("importando/Ambiente", ImportarDadosAmbiente, name="Importar-ambiente")
+    path("importando/Ambiente", importarDadosAmbiente, name="Importar-ambiente"),
+    path("importando/Historico", importarHistorico, name='Importar-historico' )
+
 
 ]
