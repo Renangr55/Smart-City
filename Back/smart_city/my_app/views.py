@@ -169,14 +169,29 @@ def ImportarDadosExcel(request):
 
     for planilha in planilhaSensores:
         for row in planilha.iter_rows(min_row=2, values_only=True):
+            
+            dicionario = {"status" : "ativo", "status" : "inativo"} 
+            valor = dicionario.get("ativo")
+            valorNegativo = dicionario.get("inativo")
+            
+
             if len(row) >= 6:
+                # Se row[5] é inativo(ou false) ou ativo(ou true) -> True ou False
+                # senao insere bool(row[5])
+                if valor == "ativo":
+                    return True
+                elif valorNegativo == "inativo":
+                    return False
+                else:
+                    valor = bool(row[5]) 
+
                 sensores = Sensores(
                     sensor=row[0],
                     mac_address=row[1],
                     unidade_med=row[2],
                     latitude=row[3],
                     longitude=row[4],
-                    status=row[5],
+                    status=valor,
                 )
                 InfoSensores.append(sensores)
                 
@@ -195,7 +210,7 @@ def importarDadosAmbiente(request):
         Ambientes.objects.all().delete()
 
         for row in planilha_ambiente.iter_rows(min_row=2, values_only=True):
-            ambientes = Ambientes(
+            ambientes = Ambientes.objects.create(
                 sig=row[0],
                 descricao=row[1],
                 ni=row[2],
@@ -203,8 +218,7 @@ def importarDadosAmbiente(request):
             ) 
             InfoAmbiente.append(ambientes)
         
-        Ambientes.objects.bulk_create(InfoAmbiente)
-        return HttpResponse ("IMPORTANDO DADOS", InfoAmbiente)
+        return HttpResponse ("IMPORTANDO DADOS")
 
 def importarHistorico(request):
     wb_historico = openpyxl.load_workbook("../Dados_Integrador/histórico.xlsx")
@@ -212,25 +226,19 @@ def importarHistorico(request):
 
     infoHistorico = []
     Historico.objects.all().delete()
-
-
-    for row in planilha_historico.iter_rows(min_row=2,values_only=True):
         
-        try:
-            sensor = Sensores.objects.get(id=row[0])
-        except Sensores.DoesNotExist:
-            return HttpResponse(f"Sensor com ID {row[0]} não encontrado.")
+    for row in planilha_historico.iter_rows(min_row=2,values_only=True):
+        tipo = Sensores.objects.get(id=row[0])
+        id_ambiente = Ambientes.objects.get(id=row[1])  # pega o objeto, não só o número
 
-        historico = Historico(
-            tipo_sensor=sensor,
-            ambiente=row[1],
+        teste = Historico.objects.create(
+            tipo_sensor=tipo,
+            ambiente=id_ambiente,
             valor=row[2],
             timestamp=row[3]
         )
 
-        infoHistorico.append(historico)
-    
-    Historico.objects.bulk_create(infoHistorico)
+        infoHistorico.append(teste)
     
     return HttpResponse("IMPORTANDO DADOS")
 
