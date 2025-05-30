@@ -1,0 +1,36 @@
+
+.header_class  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+
+
+.header_class > h1 {
+    margin-left: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.header-links {
+    padding-left: 139vh;
+    display: flex;
+    gap: 10px;
+
+    
+}
+.header-links a {
+    text-decoration: none;
+    color: white;
+}
+
+.header-links li {
+    list-style-type: none;
+    
+}
+
+.icon-signup {
+    margin-right: 30px;
+}
+

@@ -1,0 +1,86 @@
+
+.login_page{
+    background-color: #BC1F6C;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.NeoSense {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.NeoSense > h1{
+    padding-top: 100px;
+    color: #08053E;
+}
+
+.login_page > h1 {
+    text-align: center;
+}
+
+.login_text{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.login_part{
+    background-color: #08053E;
+    height: 60vh;
+    width: 30vw;
+    margin-left: 500px;
+
+}
+
+.login_text > h1 {
+    font-size: 1.5rem;
+    padding-top: 10px;
+}
+
+.formulario{
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   margin-top: 40px;
+   
+   
+
+}
+
+
+.field {
+    background-color: white;
+    margin: 10px ;
+    width: 20vw;
+    margin-left: 70px;
+    height: 50px;
+    border: 0;
+    border-radius: 0;
+}
+
+.labels {
+    margin-left: 70px;
+    margin-right: 320px;
+}
+
+.forget-password{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.forget-password  {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: smaller;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+
+
+::placeholder{
+    padding-left: 10px;
+}

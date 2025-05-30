@@ -1,0 +1,21 @@
+.home_img{
+    background-image: url("../assets/SmartCity..jpg");
+    height: 100vh;
+    width: 98.7.8vw;
+    background-size: 100% 100%; /* colocando 100% da dimensão da imagem*/
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+
+.main-home{
+    background-image: linear-gradient(50deg,#BC1F6C, #08053E);
+    height: 50vh;
+}
+
+.main_text{
+    display: flex;
+    justify-content: center;
+    color: aqua;
+    font-size: small;
+}

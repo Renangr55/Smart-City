@@ -1,40 +1,43 @@
-import LoginImage from '../assets/LoginImage.jpg'
-import '../style/Login.modules.css' 
-import { useForm } from "react-hook-form" // Forms do react form
-import {z} from 'zod' // zod 
-import {zodResolver} from '@hookform/resolvers/zod'
+import React from "react"
+import styles from "../styles/Login.module.css"
+import Botao from "../components/Botao"
 
+const Login = () => {
+    return(
+        <div className={styles.login_page}>
+            <div className={styles.NeoSense}>
+                <h1>NeoSense</h1>
+            </div>
 
+            <div className={styles.login_part}>
+                <div className={styles.login_text}>
+                    <h1>Login</h1>
+                </div>
 
+               
+                <form className={styles.formulario}>
+                    <label className={styles.labels}  htmlFor="Email">Email</label>
+                    <input
+                    placeholder='Username'
+                    className={styles.field}
+                    />
 
-function LoginPage (){
-    const loginSchema = z.object({
-        username: z.string().min(1,{message: 'Insira seu username'}),
-        Password: z.string().min(1,{message: 'Insira sua senha'}),
-    })
+                    <label className={styles.labels} htmlFor="Senha">Senha</label>
+                    <input 
+                    placeholder='Password'
+                    className={styles.field}
+                    />
+                </form>
 
+                <a href="http://" className="forget-password">
+                    Esqueceu a senha
+                </a>
 
-
-    const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => console.log(data)
-
-
-    return (
-       
-
-    <div id='login-area'>
-        <div className='logo'>
-            <h1>NeoSense</h1>
+                <Botao />
+                
+            </div>
         </div>
-        <div className='Cadastro'>
-            <h1>Login </h1>
-            <div className='Form'></div>
-        </div>
-    </div>
-
-        
-        
     )
 }
 
-export default LoginPage
+export default Login

@@ -1,5 +1,8 @@
+@import './Login.module.css';
+@import './Home.module.css';
+@import './Header.module.css';
+
 :root {
-  /*
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,11 +15,19 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  */
-  --rosa--: #BC1F6C;
-  --roxo--: #250745;
-  --azul_escuro--: #08053E;
-  --ciano--: #1EDCF2
+}
 
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+header{
+  background-color: transparent;
+}
+
+.header_class > h1 {
+    color: rgb(95, 54, 0);
 }
 
