@@ -3,26 +3,32 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 10px;
     
 }
 
 
 
-.header_class > h1 {
+.logo{
+    width: 5vw;
+    align-items: center;
     margin-left: 20px;
-    color: rgb(255, 255, 255);
+  
+    
 }
 
+
+
 .header-links {
-    padding-left: 139vh;
+    padding-left: 133vh;
     display: flex;
-    gap: 10px;
+    gap: 20px;
 
     
 }
 .header-links a {
     text-decoration: none;
-    color: white;
+    color: rgb(7, 52, 119);
 }
 
 .header-links li {
@@ -32,5 +38,6 @@
 
 .icon-signup {
     margin-right: 30px;
+    color: rgb(7, 52, 119)
 }
 

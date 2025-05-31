@@ -1,12 +1,13 @@
 import style from "../styles/Header.module.css"
 import { FaUser } from 'react-icons/fa';
+import NeoSense from '../assets/NeoSense.png'
 
 
 const Header = () => {
     return (
         <header>
             <div className={style.header_class}>
-                <h1 className="logo-text">Neosense</h1>
+                <img src={NeoSense} alt="Logo NeoSense" className={style.logo} />
                 
                 <ul className="header-links">
                     <li><a href="#">About</a></li>
@@ -20,7 +21,7 @@ const Header = () => {
             </div>
         </header>
 
-        
+
     )
 }
 

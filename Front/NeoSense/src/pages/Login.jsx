@@ -1,14 +1,15 @@
 import React from "react"
 import styles from "../styles/Login.module.css"
 import Botao from "../components/Botao"
+import NeoSense from '../assets/NeoSense.png'
+
 
 const Login = () => {
     return(
         <div className={styles.login_page}>
-            <div className={styles.NeoSense}>
-                <h1>NeoSense</h1>
+            <div className={styles.logo}>
+                <img src={NeoSense} alt="Logo Neo Sense" />
             </div>
-
             <div className={styles.login_part}>
                 <div className={styles.login_text}>
                     <h1>Login</h1>

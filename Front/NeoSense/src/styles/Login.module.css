@@ -1,35 +1,38 @@
 
 .login_page{
-    background-color: #BC1F6C;
+    background-image: linear-gradient(180deg,#0063C4, #08053E);
     max-width: 100%;
     min-height: 100vh;
 }
 
-.NeoSense {
+.logo {
     display: flex;
     justify-content: center;
-    text-align: center;
-}
-.NeoSense > h1{
-    padding-top: 100px;
-    color: #08053E;
+    align-items: center;
+    
 }
 
-.login_page > h1 {
-    text-align: center;
+.logo > img {
+    width: 10vw;
+    margin-top: 60px;
+    margin-bottom: 60px;
 }
+
 
 .login_text{
     display: flex;
     justify-content: center;
-    
+    color: #0063C4;
 }
 
+
+
 .login_part{
-    background-color: #08053E;
+    background-color: #272727;
     height: 60vh;
     width: 30vw;
     margin-left: 500px;
+    margin-right: 500px;
 
 }
 
