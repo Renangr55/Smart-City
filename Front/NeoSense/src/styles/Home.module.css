@@ -10,12 +10,84 @@
 
 .main-home{
     background-image: linear-gradient(50deg,#0063C4, #08053E);
-    height: 50vh;
+    height: 60vh;
 }
 
 .main_text{
     display: flex;
     justify-content: center;
     color: rgb(255, 255, 255);
-    font-size: small;
+    padding-top: 30px;
+    font-size: large;
+
 }
+
+.main-parts-of-sensor {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.main_second_part{
+    height: 40vh;
+}
+
+.text-crud{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+
+}
+
+.text-crud > h1 {
+    color: #ffffff;
+    font-size: larger;
+
+}
+
+.main_crud{
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+}
+
+.Sensors{
+    background-color: #0066ff;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.Sensors > h1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.Ambiente{
+    background-color: #0066ff;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.Ambiente > h1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.Historic{
+    background-color: #0066ff;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.Historic > h1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+

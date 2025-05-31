@@ -3,16 +3,16 @@ import { FaUser } from 'react-icons/fa';
 import NeoSense from '../assets/NeoSense.png'
 
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header>
             <div className={style.header_class}>
                 <img src={NeoSense} alt="Logo NeoSense" className={style.logo} />
                 
                 <ul className="header-links">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Sensors</a></li>
-                    <li><a href="#">Export</a></li>
+                    <li><a href="#">{props.first}</a></li>
+                    <li><a href="#">{props.second}</a></li>
+                    <li><a href="#">{props.thirst}</a></li>
                 </ul>
 
                 <div className="icon-signup">

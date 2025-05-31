@@ -28,13 +28,14 @@ const Login = () => {
                     placeholder='Password'
                     className={styles.field}
                     />
+                
+
+                    <a href="http://" className="forget-password">
+                        Esqueceu a senha
+                    </a>
+
+                    <Botao text="Entrar"/>
                 </form>
-
-                <a href="http://" className="forget-password">
-                    Esqueceu a senha
-                </a>
-
-                <Botao />
                 
             </div>
         </div>

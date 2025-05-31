@@ -1,6 +1,7 @@
 @import './Login.module.css';
 @import './Home.module.css';
 @import './Header.module.css';
+@import './Card.module.css';
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -27,7 +28,5 @@ header{
   background-color: transparent;
 }
 
-.header_class > h1 {
-    color: rgb(95, 54, 0);
-}
+
 
